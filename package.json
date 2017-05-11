@@ -1,0 +1,26 @@
+{
+  "name": "flocktracker_sensor_server_prototype",
+  "version": "0.0.1",
+  "description": "A server that listens for sensor data on the internet and serves it to clients",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flocktracker/sensor_prototype-server-Node.js.git"
+  },
+  "keywords": [
+    "sensor",
+    "internet",
+    "of",
+    "things",
+    "data"
+  ],
+  "author": "Daniel Heriberto Palencia Arreola",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Flocktracker/sensor_prototype-server-Node.js/issues"
+  },
+  "homepage": "https://github.com/Flocktracker/sensor_prototype-server-Node.js#readme"
+}
