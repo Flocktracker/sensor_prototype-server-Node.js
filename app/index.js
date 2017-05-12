@@ -14,13 +14,13 @@ app.use(bodyParser.json());
 app.post('/ph_data', function (req, res, next) {  
     // retrieve user posted data from the body
     const reading = req.body
-    
+    console.log(req.body)
   	pg.connect(conString, function (err, client, done) {
 	    if (err) {
 	      // pass the error to the express error handler
 	      return next(err)
 	    }
-	    client.query('INSERT INTO readings (time_stamp, ph) VALUES ($1, $2);', [reading.time_stamp, reading.ph], function (err, result) {
+	    client.query("INSERT INTO readings (time_stamp, ph) VALUES (to_timestamp($1) AT TIME ZONE 'UTC', $2);", [reading.time_stamp, reading.ph], function (err, result) {
 	    	done() //this done callback signals the pg driver that the connection can be closed or returned to the connection pool
 
 	      	if (err) {
