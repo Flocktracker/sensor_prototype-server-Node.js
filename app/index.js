@@ -40,7 +40,7 @@ app.get('/ph_data', function (req, res, next) {
       // pass the error to the express error handler
       return next(err)
     }
-    client.query('SELECT time_stamp, ph FROM readings;', [], function (err, result) {
+    client.query('SELECT time_stamp, ph FROM readings ORDER by time_stamp DESC LIMIT 100;', [], function (err, result) {
       done()
 
       if (err) {
