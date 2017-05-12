@@ -25,6 +25,7 @@
   "homepage": "https://github.com/Flocktracker/sensor_prototype-server-Node.js#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "pg": "^6.1.5"
   }
 }
