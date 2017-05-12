@@ -34,10 +34,22 @@ app.post('/ph_data', function (req, res, next) {
 })
 
 
-app.get('/ph_data', function (req, res) {  
-    // retrieve user posted data from the body
-    res.json({
-    readings: readings
+app.get('/ph_data', function (req, res, next) {  
+  pg.connect(conString, function (err, client, done) {
+    if (err) {
+      // pass the error to the express error handler
+      return next(err)
+    }
+    client.query('SELECT time_stamp, ph FROM readings;', [], function (err, result) {
+      done()
+
+      if (err) {
+        // pass the error to the express error handler
+        return next(err)
+      }
+
+      res.json(result.rows)
+    })
   })
 })
 
