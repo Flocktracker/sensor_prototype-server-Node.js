@@ -7,9 +7,9 @@ const port = 3000
 const pg = require('pg')  
 const conString = 'postgres://postgres:12345678@localhost/ph_data'
 
-const readings = []
 
-app.use(bodyParser.json());
+
+	app.use(bodyParser.json());
 
 app.post('/ph_data', function (req, res, next) {  
     // retrieve user posted data from the body
@@ -52,6 +52,27 @@ app.get('/ph_data', function (req, res, next) {
     })
   })
 })
+
+
+app.get('/ph_json', function (req, res, next) {  
+  pg.connect(conString, function (err, client, done) {
+    if (err) {
+      // pass the error to the express error handler
+      return next(err)
+    }
+    client.query('SELECT time_stamp, ph FROM readings ORDER by time_stamp DESC LIMIT 100;', [], function (err, result) {
+      done()
+
+      if (err) {
+        // pass the error to the express error handler
+        return next(err)
+      }
+      res.setHeader('Access-Control-Allow-Origin', "http://51229968.ngrok.io")
+      res.jsonp(result.rows)
+    })
+  })
+})
+
 
 
 app.listen(port)
